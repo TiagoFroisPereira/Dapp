@@ -5,5 +5,5 @@ contract Faucet {
     // storage variables
     uint public funds = 1000; // only hold positive values
     int public counter = -10; // can hold negative values
-
+    uint public test = 4294967295;
 }
