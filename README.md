@@ -7,3 +7,5 @@ Using truffle as a development environement
   
 Using ganache as a private blockchain running on local machine:
   - https://trufflesuite.com/ganache/
+
+Using web3.js to call the blockchain
