@@ -2,8 +2,31 @@
 pragma solidity >=0.4.22 <0.9.0;
 
 contract Faucet {
-    // storage variables
-    uint public funds = 1000; // only hold positive values
-    int public counter = -10; // can hold negative values
-    uint public test = 4294967295;
+
+    // this is a special function
+    // it's called when you make a tx that doesnt specify 
+    // function name to call
+
+    // External function are part of the contract interface
+    // which means they can be called via contracts and other trx
+    
+    receive() external payable{}
+
+    function addFunds() external payable{}
+
+    function justTesting() external pure returns(uint) {
+        return 2 + 2;
+    }
 }
+
+// pure, view - read-only call, no gas free 
+// view - it indicates that the function will not be able to alter the storage state in any way
+// pure - even more strict, indicating that it won't even read the storage state
+
+
+// Transactions ( can generate state changes) and requires gas fees
+// read-only call, no gas free 
+
+// to talk to the node on the network you can make JSON-RPC http calls
+
+// const instance = await Faucet.deployed()
