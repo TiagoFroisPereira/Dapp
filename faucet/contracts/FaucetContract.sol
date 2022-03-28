@@ -3,6 +3,9 @@ pragma solidity >=0.4.22 <0.9.0;
 
 contract Faucet {
 
+    // Variables
+    address[] public funders;
+
     // this is a special function
     // it's called when you make a tx that doesnt specify 
     // function name to call
@@ -12,10 +15,20 @@ contract Faucet {
     
     receive() external payable{}
 
-    function addFunds() external payable{}
+    function addFunds() external payable
+    {
+        funders.push(msg.sender);
+    }
 
-    function justTesting() external pure returns(uint) {
-        return 2 + 2;
+    function getAllFunders() public view returns (address[] memory)
+    {
+        return funders;
+    }
+
+    function getFunderAtIndex(uint8 index) external view returns(address) 
+    {
+        address[] memory _funders = getAllFunders();
+        return _funders[index];
     }
 }
 
@@ -23,6 +36,9 @@ contract Faucet {
 // view - it indicates that the function will not be able to alter the storage state in any way
 // pure - even more strict, indicating that it won't even read the storage state
 
+// external, public - can be called from outside the smart contract
+// external - cannot be called from other functions inside the smart contract
+// public - can be called by other functions inside the smart contract
 
 // Transactions ( can generate state changes) and requires gas fees
 // read-only call, no gas free 
