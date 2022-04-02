@@ -32,6 +32,7 @@ contract Faucet {
     }
 }
 
+//----------- Helper -------------------
 // pure, view - read-only call, no gas free 
 // view - it indicates that the function will not be able to alter the storage state in any way
 // pure - even more strict, indicating that it won't even read the storage state
@@ -39,6 +40,10 @@ contract Faucet {
 // external, public - can be called from outside the smart contract
 // external - cannot be called from other functions inside the smart contract
 // public - can be called by other functions inside the smart contract
+
+// private, internal - cannot be called from outside the smart contract
+// private - can be accessible only within the smart contract
+// internal - can be accessible within the smart contract and also derived smart contract (contract that extend)
 
 // Transactions ( can generate state changes) and requires gas fees
 // read-only call, no gas free 
