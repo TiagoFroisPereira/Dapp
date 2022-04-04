@@ -5,8 +5,32 @@ contract Faucet {
 
     // Variables
     uint public numOfFunders;
+    address public owner;
     mapping(address => bool) private funders;
     mapping(uint => address) private lutFunders;
+
+
+    constructor(){
+        owner = msg.sender;
+    }
+
+    modifier onlyOwner {
+        require(
+            msg.sender == owner,
+            "Only owner can call this function"
+        );
+        _;
+    }
+    modifier limitWithdraw(uint withdrawAmount)
+    {
+        require(
+            withdrawAmount <= 100000000000000000,
+            "Cannot withdraw more than 0.1 ether"
+            );
+        _;
+    }
+
+
 
     // this is a special function
     // it's called when you make a tx that doesnt specify 
@@ -26,6 +50,21 @@ contract Faucet {
             funders[funder] = true;
             lutFunders[index] = funder;
         }
+    }
+    function withdraw(uint withdrawAmount) external limitWithdraw(withdrawAmount)
+    {
+        payable(msg.sender).transfer(withdrawAmount);
+    }
+
+
+    function test1() external onlyOwner
+    {
+        // some managing stuff that only admin should have access to
+    }
+
+    function test2() external onlyOwner
+    {
+        // some managing stuff that only admin should have access to
     }
 
     function getAllFunders() public view returns (address[] memory)
