@@ -1,5 +1,6 @@
 import './App.css';
 import { useEffect, useState } from "react";
+import detectEthereumProvider from '@metamask/detect-provider';
 import Web3 from "web3";
 
 function App() {
@@ -13,30 +14,19 @@ function App() {
 
   useEffect( () => {
       const loadProvider = async () => {
+        const provider = await detectEthereumProvider();
         // with metamask we have an access to window.ethereum & window.web3
         // metamaks injects a global API into website
         // this API allows website to request users, accounts, read data to blockchain 
         // sign messages and transactions
-        let provider = null;
-        if(window.ethereum){
-            provider = window.ethereum;
-            try{
-              provider.request({method:"eth_requestAccounts"});
-            }catch{
-              console.error("User denied accounts access!")
-            }
+        if(provider) {
+          setWeb3Api({
+            web3: new Web3(provider),
+            provider: provider
+          });
+        }else{
+          console.error("Please, install Metamask.");
         }
-        else if (window.web3){
-            provider =  window.web3.provider;
-        }
-        else if (!process.env.production){
-            provider = new Web3.providers.HttpProvider("http://localhost:7545")
-        }
-
-        setWeb3Api({
-          web3: new Web3(provider),
-          provider: provider
-        })
       }
 
       loadProvider()
@@ -54,26 +44,26 @@ function App() {
     <>
       <div className='faucet-wrapper'>
         <div className="faucet">
-          <span>
-            <strong>Account: </strong>
-          </span>
-          <h1>
-            {account ? account : "not connected" }
-          </h1>
-          <div className="balance-view is-size-2">
+          <div className="is-flex is-align-items-center">
+            <span>
+              <strong className="mr-2">Account: </strong>
+            </span>
+            { account ? 
+              <div>{account}</div> : 
+              <button 
+                className="button is-small"
+                onClick={() => web3Api.provider.request({method:"eth_requestAccounts"})}
+              >
+                Connect Wallet
+              </button>
+            }
+          </div>
+          <div className="balance-view is-size-2 my-4">
             Current Balance: <strong>10</strong> ETH
           </div>
           <button 
-            className="btn mr-2"
-            onClick={async () => {
-              const accounts = await window.ethereum.request({method: "eth_requestAccounts"})
-              console.log(accounts)
-            }}
-            >
-            Enable ethereum
-          </button>
-          <button className="btn mr-2">Donate</button>
-          <button className="btn">Withdraw</button>
+            className="button is-link is-light mr-2">Donate</button>
+          <button className="button is-primary is-light">Withdraw</button>
         </div>
       </div>
     </>
