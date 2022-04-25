@@ -4,6 +4,7 @@ import "bulma/css/bulma.min.css";
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+<meta name="viewport" content="width=device-width, initial-scale=1"></meta>
 
 ReactDOM.render(
   <React.StrictMode>
