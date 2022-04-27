@@ -36,3 +36,9 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 ## Style
 Using Tailwindcss : https://tailwindcss.com/docs/guides/nextjs
+
+
+## Packages
+
+Web3.js - npm install web3 (https://web3js.readthedocs.io/en/v1.7.3/getting-started.html)
+Metamask detect provider - npm i @metamask/detect-provider (https://www.npmjs.com/package/@metamask/detect-provider)
