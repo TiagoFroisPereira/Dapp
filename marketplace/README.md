@@ -42,3 +42,4 @@ Using Tailwindcss : https://tailwindcss.com/docs/guides/nextjs
 
 Web3.js - npm install web3 (https://web3js.readthedocs.io/en/v1.7.3/getting-started.html)
 Metamask detect provider - npm i @metamask/detect-provider (https://www.npmjs.com/package/@metamask/detect-provider)
+truffle contract loader  - npm i @truffle/contract 
