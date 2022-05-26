@@ -2,7 +2,7 @@ import { useEffect } from "react"
 import useSWR from "swr"
 
 const adminAddress ={
-  "0x0d79b1be11021f5a6d18a877fd07be9d7a73ba3361e280eb22b089e8f50ef2fd" : true
+  "0x2e21c8589059501fa3a14c320464b771ab020bae924805ebba58aeb439740394" : true
 }
 
 export const handler = (web3, provider) => () => {

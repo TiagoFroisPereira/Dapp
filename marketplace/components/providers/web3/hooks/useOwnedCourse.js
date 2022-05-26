@@ -1,5 +1,5 @@
 import { createCourseHash } from "@utils/hash"
-import { normalizeOwnedCourse } from "@utils/normalizeOwnedCourse"
+import { normalizeOwnedCourse } from "@utils/normalize"
 import useSWR from "swr"
 
 export const handler = (web3, contract) => (course, account) => {
